@@ -1,0 +1,1 @@
+py -3 -i "$(FULL_CURRENT_PATH)"

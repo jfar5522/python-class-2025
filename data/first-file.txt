@@ -1,0 +1,3 @@
+Learning Python
+is difficult but
+it can be fun
