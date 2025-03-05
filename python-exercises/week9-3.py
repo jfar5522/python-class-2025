@@ -1,4 +1,5 @@
 import game
+import myreadfile
 
 # file=open("WriteOutput.txt", "w")
 # for line in range(1000):
