@@ -23,8 +23,7 @@ filelib.fileWriter("resorting.txt",["one","two","three","four"])
 #will maybe use a range parameter function in the future but for now takes the
 #specific lines and adds them to sorted
 filelib.fileWriter("sorted.txt",
-[filelib.fileLineReader("resorting.txt",3),filelib.fileLineReader("resorting.txt",4
-)])
+[filelib.fileLineReader("resorting.txt",3),filelib.fileLineReader("resorting.txt",4)])
 
 #writes 20 lines to the resorting file
 filelib.fileWriter("resorting.txt",
@@ -53,8 +52,7 @@ filelib.fileWriter("sorted.txt",rsorted)
 #and values into a sorted dictionary, finally prints.
 
 filelib.fileWriter("keys.txt", [8977,3248,9837,2123])
-filelib.fileWriter("values.txt", ["Katy Perry", "Marshal Mathers", "Jason Mamoa",
-"Julia Roberts"])
+filelib.fileWriter("values.txt", ["Katy Perry", "Marshal Mathers", "Jason Mamoa", "Julia Roberts"])
 
 keys = filelib.fileReader("keys.txt")
 values = filelib.fileReader("values.txt")
