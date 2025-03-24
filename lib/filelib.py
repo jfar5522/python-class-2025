@@ -110,7 +110,6 @@ def fileWriter(fileName, content, line=0, clearFile=False, mode="w"):
     # if lines is null error out. This should NEVER happen
     if lines is None:
         raise ValueError(f"Failed to read {filePath}")
-
     # make sure line is a positive integer and nothing else
     if not isinstance(line, int) or line < 0:
         raise ValueError("Line number must be a positive integer")
