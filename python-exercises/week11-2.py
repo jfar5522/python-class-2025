@@ -21,6 +21,7 @@ class Student:
     lastName = ""
     DOB = ""
     diploma = "no"
+    
     def __init__(self,fname,lname):
         # self.UID=uid
         self.firstName=fname
