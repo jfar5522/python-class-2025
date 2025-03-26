@@ -1,15 +1,13 @@
-#note all files created are assumed to be data files and therefore will be created
-#in the "data" directory
+#note all files created are assumed to be data files and therefore will be created in the "data" directory
 
-#reads and prints every line of the file specified in parameter. Also returns a
-#list of all the lines.
+#reads and prints every line of the file specified in parameter. Also returns a list of all the lines.
 def fileFinder(fileName, mode="r"):
     # Check current directory for file
     try:
-         file=open(fileName)
-         file.close()
-         return fileName
-
+        file=open(fileName)
+        file.close()
+        return fileName
+    
     # check data folder for file
     except FileNotFoundError:
         import os
@@ -18,33 +16,32 @@ def fileFinder(fileName, mode="r"):
         scriptDir = os.path.dirname(os.path.abspath(__file__))
         filePath = os.path.join(scriptDir, "..", "data", fileName)
         try:
-             file=open(filePath)
-             file.close()
-             return filePath
-
+            file=open(filePath)
+            file.close()
+            return filePath
+        
         except FileNotFoundError:
             # check if mode is "w" or "a" else return null
             if mode in {"w", "a"}:
                 try:
-                     file=open(filePath,"w")
-                     file.close()
-                     return filePath
-                except FileNotFoundError: # if "data" folder doesn't exist... too
-#lazy to have it create it for you
-                     file=open(fileName, "w")
-                     file.close()
-                     return fileName
+                    file=open(filePath,"w")
+                    file.close()
+                    return filePath
+                except FileNotFoundError: # if "data" folder doesn't exist... too lazy to have it create it for you
+                    file=open(fileName, "w")
+                    file.close()
+                    return fileName
             else: # if reading and not writing file
                 print(f"File {fileName} does not exist in either the current or data directory for reading! Returning null!")
                 return None
 
-
+    
 #read entire file, optionally able to print file with print paramter
 def fileReader(fileName, newlines=False, printbool=False):
     filePath = fileFinder(fileName)
     if filePath is None:
         return None
-
+    
     lineList = []
 
     #put "with" here as an example of a way to open a file without having to manually close it each time
@@ -63,17 +60,17 @@ def fileReader(fileName, newlines=False, printbool=False):
 
                 #test if integer or not
                 try:
-                     line = int(line)
+                    line = int(line)
                 except ValueError:
-                     line = str(line)
+                    line = str(line)
 
                 lineList.append(line)
                 if(printbool):
                     print(line)
             return(lineList)
 
-#reads the line specified of the named file
-def fileLineReader(fileName, line):
+#reads the line specified of the named file 
+def fileLineReader(fileName, line):            
             filePath = fileFinder(fileName)
             if filePath is None:
                 return None
@@ -84,7 +81,7 @@ def fileLineReader(fileName, line):
                 sLine = file.readline()
                 return sLine
 
-
+            
 #writes a new/to a file, can change mode to write but defaults to append
 def fileAppender(fileName, content):
         mode = "a"
@@ -98,12 +95,11 @@ def fileAppender(fileName, content):
 def fileWriter(fileName, content, line=0, clearFile=False, mode="w"):
     """
     Write integers or a list of integers to a specific line in a file.
-
+    
     Args:
         fileName (str): Name of the file to write to.
         content (int or list): A single integer or list of integers to write.
-        line (int): The line number to write to (1-based index). Ignored if content
-is a list.
+        line (int): The line number to write to (1-based index). Ignored if content is a list.
         clearFile (bool): If True, clear the file before writing.
         mode (str): File mode ("w" for write, "a" for append).
     """
@@ -125,9 +121,8 @@ is a list.
             content += "\n"
 
         # If clearFile is True or anything close to true, ignore existing lines and pad with newlines
-        if clearFile or clearFile == 1 or clearFile in {"1", "one", "yes", "Yes",
-"true", "True" "on", "active"}:
-            lines = [] # Clear existing content in memory
+        if clearFile or clearFile == 1 or clearFile in {"1", "one", "yes", "Yes", "true", "True" "on", "active"}:
+            lines = []  # Clear existing content in memory
             while len(lines) < line: # add new lines (enter characters) to list until you reach the target line of list
                 lines.append("\n")
             lines[line - 1] = content
@@ -149,3 +144,4 @@ is a list.
                 if not line.endswith("\n"):
                     line += "\n"
                 file.write(line)
+

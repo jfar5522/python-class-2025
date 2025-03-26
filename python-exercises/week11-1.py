@@ -1,6 +1,6 @@
 try:
     import filelib
-except ModuleNotFoundError: #default to the library dir if module file not in the same dir as program
+except ModuleNotFoundError:
     import sys
     import os
 
@@ -11,27 +11,28 @@ except ModuleNotFoundError: #default to the library dir if module file not in th
 #filelib.fileLineReader("sentences.txt",1)
 #filelib.fileWriter("sentences.txt","hi there!")
 
-# Welcome! All the code is in my modual file this file is to call functions or
-#write code with my lib functions!
+# Welcome! All the code is in my modual file this file is to call functions or write code with my lib functions!
 # Please look over my filelib.py modual file for code specifics.
-# filelib.py should be included either in the lib folder, if you're looking at my
-#github, or included in the submission files!
+# filelib.py should be included either in the lib folder, if you're looking at my github, or included in the submission files!
 
 #creates resorting txt file and adds a list of strings on each line
 filelib.fileWriter("resorting.txt",["one","two","three","four"])
 
+<<<<<<< HEAD
 #will maybe use a range parameter function in the future but for now takes the
 #specific lines and adds them to sorted
 filelib.fileWriter("sorted.txt",
 [filelib.fileLineReader("resorting.txt",3),filelib.fileLineReader("resorting.txt",4)])
+=======
+#will maybe use a range parameter function in the future but for now takes the specific lines and adds them to sorted
+filelib.fileWriter("sorted.txt", [filelib.fileLineReader("resorting.txt",3),filelib.fileLineReader("resorting.txt",4)])
+>>>>>>> 62e63f485725ea58a3265a6a5e99b802a48df9f0
 
 #writes 20 lines to the resorting file
-filelib.fileWriter("resorting.txt",
-["one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen",
-"fourteen","fifteen","sixteen","seventeen","eightteen","nineteen","twenty"])
+filelib.fileWriter("resorting.txt",["one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve"
+                                        ,"thirteen", "fourteen","fifteen","sixteen","seventeen","eightteen","nineteen","twenty"])
 
-#adds the last 10 lines to the sorted file. Functions are broken up to avoid
-#running them multiple times.
+#adds the last 10 lines to the sorted file. Functions are broken up to avoid running them multiple times.
 resorting = filelib.fileReader("resorting.txt")
 sortedF = []
 for line in range(9,20):
@@ -48,8 +49,7 @@ for line in sortedF:
 
 filelib.fileWriter("sorted.txt",rsorted)
 
-#create new files "keys.txt" and "values.txt" respectively, then combines the keys
-#and values into a sorted dictionary, finally prints.
+#create new files "keys.txt" and "values.txt" respectively, then combines the keys and values into a sorted dictionary, finally prints.
 
 filelib.fileWriter("keys.txt", [8977,3248,9837,2123])
 filelib.fileWriter("values.txt", ["Katy Perry", "Marshal Mathers", "Jason Mamoa", "Julia Roberts"])
@@ -65,3 +65,7 @@ for key, value in zip(keys, values):
 sortedDic = sorted(dic.items())
 
 print(sortedDic)
+
+
+
+
