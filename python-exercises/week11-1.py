@@ -18,15 +18,13 @@ except ModuleNotFoundError:
 #creates resorting txt file and adds a list of strings on each line
 filelib.fileWriter("resorting.txt",["one","two","three","four"])
 
-<<<<<<< HEAD
 #will maybe use a range parameter function in the future but for now takes the
 #specific lines and adds them to sorted
 filelib.fileWriter("sorted.txt",
 [filelib.fileLineReader("resorting.txt",3),filelib.fileLineReader("resorting.txt",4)])
-=======
 #will maybe use a range parameter function in the future but for now takes the specific lines and adds them to sorted
 filelib.fileWriter("sorted.txt", [filelib.fileLineReader("resorting.txt",3),filelib.fileLineReader("resorting.txt",4)])
->>>>>>> 62e63f485725ea58a3265a6a5e99b802a48df9f0
+
 
 #writes 20 lines to the resorting file
 filelib.fileWriter("resorting.txt",["one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve"
