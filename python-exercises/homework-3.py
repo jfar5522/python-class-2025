@@ -1,5 +1,7 @@
 #THIS IS THE "MAIN" FILE!
 #Got bugs? Please let me know!
+
+#import function modules from the "lib" folder
 try:
     import sys
     import os
@@ -12,6 +14,7 @@ except ModuleNotFoundError:
     #To run this program with my file system in mind download it here on my github! https://github.com/jfar5522/python    
     import filelib
 
+#import class modules from the "classes" folder
 try:
     import sys
     import os
@@ -53,16 +56,16 @@ for line in lineList:
 
     customerList.append(customer.Customer(accountNum, amount))
 
-# print(customerList)
+print(customerList)
 
 # goes through the customer object list and runs the "calcuateInterestPayment" customer class function which in turn
 # takes the percentage of the account amount and adds that percentage to the account's amount
-
 for act in customerList:
     act.calculateInterestPayment(5)
 
-    # print(act._amount)
+    print(act._amount)
 
+#takes the customer list and outputs it to the output.csv file
 filelib.fileWriter("output.csv",customerList)
 
 

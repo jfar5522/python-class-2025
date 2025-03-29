@@ -24,7 +24,7 @@ def fileFinder(fileName, mode="r"):
             # check if mode is "w" or "a" else return null
             if mode in {"w", "a"}:
                 try:
-                    file=open(filePath,"w")
+                    file=open(filePath,"w") # create in data folder
                     file.close()
                     return filePath
                 except FileNotFoundError: # if "data" folder doesn't exist... too lazy to have it create it for you so it creates file to the program's current directory
