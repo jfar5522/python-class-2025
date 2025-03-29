@@ -1,5 +1,6 @@
 {
     "python.analysis.extraPaths": [
-        "${workspaceFolder}/lib"
+        "${workspaceFolder}/lib",
+        "${workspaceFolder}/classes"
     ]
 }

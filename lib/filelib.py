@@ -1,6 +1,6 @@
 #note all files created are assumed to be data files and therefore will be created in the "data" directory
 
-#reads and prints every line of the file specified in parameter. Also returns a list of all the lines.
+#finds or creates file specified
 def fileFinder(fileName, mode="r"):
     # Check current directory for file
     try:
@@ -27,7 +27,7 @@ def fileFinder(fileName, mode="r"):
                     file=open(filePath,"w")
                     file.close()
                     return filePath
-                except FileNotFoundError: # if "data" folder doesn't exist... too lazy to have it create it for you
+                except FileNotFoundError: # if "data" folder doesn't exist... too lazy to have it create it for you so it creates file to the program's current directory
                     file=open(fileName, "w")
                     file.close()
                     return fileName
@@ -36,27 +36,39 @@ def fileFinder(fileName, mode="r"):
                 return None
 
     
-#read entire file, optionally able to print file with print paramter
-def fileReader(fileName, newlines=False, printbool=False):
+#read entire file, optionally add new return lines after each line, also able to print file with print paramter
+def fileReader(fileName, fileOrList=False, newlines=False, printbool=False):
+    """
+    read entire file, optionally add new return lines after each line, also able to print file with print paramter
+    
+    Args:
+        fileName (str): Name of the file to read to.
+        fileList (bool): False means lines list for writing into a file. True means normal list to grab items from.
+        newlines (bool): New blank line after each line.
+        printbool (bool): Print file to terminal.
+    """
+
     filePath = fileFinder(fileName)
     if filePath is None:
         return None
     
     lineList = []
 
-    #put "with" here as an example of a way to open a file without having to manually close it each time
-    if(newlines):
+    #add new lines, \n, after each line
+    if newlines:
         with open(filePath) as file:
             for line in file:
                 lineList.append(line)
-                if(printbool):
+                if printbool:
                     print(line)
             return(lineList)
     else:
         with open(filePath) as file:
             for line in file:
+
                 #remove new line string
-                line = line.rstrip("\n")
+                if(fileOrList):
+                    line = line.rstrip("\n")
 
                 #test if integer or not
                 try:
@@ -65,10 +77,11 @@ def fileReader(fileName, newlines=False, printbool=False):
                     line = str(line)
 
                 lineList.append(line)
-                if(printbool):
+                if printbool:
                     print(line)
             return(lineList)
 
+#NOTE: turn function into "fileRangeReader" to read a specific range of lines while returning that range as a list.
 #reads the line specified of the named file 
 def fileLineReader(fileName, line):            
             filePath = fileFinder(fileName)
@@ -76,12 +89,12 @@ def fileLineReader(fileName, line):
                 return None
 
             with open(filePath) as file:
-                for lineI in range(line-1):
+                for i in range(line-1):
                     file.readline()
                 sLine = file.readline()
                 return sLine
 
-            
+#NOTE obsolete, don't bother using unless you feel like it and want it write weirdly into a file.            
 #writes a new/to a file, can change mode to write but defaults to append
 def fileAppender(fileName, content):
         mode = "a"
@@ -92,56 +105,79 @@ def fileAppender(fileName, content):
 
 
 #writes on or over a specified line of the named file
-def fileWriter(fileName, content, line=0, clearFile=False, mode="w"):
+def fileWriter(fileName, content, line=1, clearFile=False, mode="w"):
     """
-    Write integers or a list of integers to a specific line in a file.
+    Write strings or integers over lines in a file, can use lists to achieve the same thing.
     
     Args:
         fileName (str): Name of the file to write to.
-        content (int or list): A single integer or list of integers to write.
-        line (int): The line number to write to (1-based index). Ignored if content is a list.
+        content (string, int or list): A single integer/string or list of integers/strings to write.
+        line (int): The line number to write at or start writing at (1-based index).
         clearFile (bool): If True, clear the file before writing.
-        mode (str): File mode ("w" for write, "a" for append).
+        mode (str): File mode, archaic don't use unless you really want to. ("w" for write, "a" for append)
     """
+
     filePath = fileFinder(fileName, "w")
 
-    lines = fileReader(fileName)
+    fileContent = fileReader(fileName)
 
-    # if lines is null error out. This should NEVER happen
-    if lines is None:
+    # if lines is null error out. This should NEVER happen!
+    if fileContent is None:
         raise ValueError(f"Failed to read {filePath}")
-    # make sure line is a positive integer and nothing else
+    
+    # make sure line is a positive integer and nothing else.
     if not isinstance(line, int) or line < 0:
-        raise ValueError("Line number must be a positive integer")
-
-    # Ensure content ends with a newline for consistency (if not used you will be deleting a line)
-    if isinstance(content, (str, int)):
+        raise ValueError("Line number must be a positive integer.")
+    
+    # if it's not a string or list, turn it into a string.
+    if not isinstance(content, (str, list)):
         content = str(content)
-        if not content.endswith("\n"):
-            content += "\n"
 
-        # If clearFile is True or anything close to true, ignore existing lines and pad with newlines
-        if clearFile or clearFile == 1 or clearFile in {"1", "one", "yes", "Yes", "true", "True" "on", "active"}:
-            lines = []  # Clear existing content in memory
-            while len(lines) < line: # add new lines (enter characters) to list until you reach the target line of list
-                lines.append("\n")
-            lines[line - 1] = content
-        else:
-            # Pad with empty lines if the target line exceeds current file length
-            while len(lines) < line:
-                lines.append("\n")
-            # Replace the specified line with the new content
-            lines[line - 1] = content
+    # If clearFile is True or anything close to true, ignore existing lines and pad with newlines.
+    if clearFile or clearFile == 1 or clearFile in {"1", "one", "yes", "Yes", "true", "True" "on", "active"}:
+        fileContent = []  # Clear existing content in memory.
 
+
+
+
+    if isinstance(content, str):
+        # Pad with empty lines if the target line exceeds current file length.
+        while len(fileContent) <= line:
+            fileContent.append("\n")
+        # if not content.endswith("\n"):
+        #     content += "\n"
+            
+        # Replace the specified line with the new content.
+        fileContent[line - 1] = content
+
+        #input modified fileContent back into file.
         with open(filePath, mode) as file:
-            file.writelines(lines)
+            file.writelines(fileContent)
 
-    #if using a list rather than a single string, very effective when using one of the fileReaders
+    #if using a list rather than a single string, very effective when using filereader as it outputs a list.
     elif isinstance(content, list):
+
         with open(filePath, mode) as file:
-            for line in content:
-                line = str(line)
-                if not line.endswith("\n"):
-                    line += "\n"
-                file.write(line)
+            # first add spaces to meet what line the user wants to type from, 
+            # then create space for the new content the user wants to write
+            while len(fileContent) <= line + len(content) - 2:
+                fileContent.append("\n")
+            try:
+                for iLine in content:
+                    iLine = str(iLine)
+    
+                    
+                    if not iLine.endswith("\n"):
+                        iLine += "\n"
+
+
+                    fileContent[line - 1] = iLine
+                    line += 1
+
+                file.writelines(fileContent)
+            except TypeError:
+                print("There was a type error in your list! Make sure you're inputting content that can be turned into a string."
+                "\nLists inside lists are not allowed... yet.")
+    else:
+        raise TypeError("Whatever content you have inputed ")
 
