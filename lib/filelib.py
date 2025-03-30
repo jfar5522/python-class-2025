@@ -32,7 +32,7 @@ def fileFinder(fileName, mode="r"):
                     file.close()
                     return fileName
             else: # if reading and not writing file
-                print(f"File {fileName} does not exist in either the current or data directory for reading! Returning null!")
+                print(f"File {fileName} does not exist in either the current or data directory for reading purposes!\nReturning null!")
                 return None
 
     
@@ -81,7 +81,7 @@ def fileReader(fileName, fileOrList=False, newlines=False, printbool=False):
                     print(line)
             return(lineList)
 
-#NOTE: turn function into "fileRangeReader" to read a specific range of lines while returning that range as a list.
+#TODO: turn function into "fileRangeReader" to read a specific range of lines while returning that range as a list.
 #reads the line specified of the named file 
 def fileLineReader(fileName, line):            
             filePath = fileFinder(fileName)
@@ -121,7 +121,7 @@ def fileWriter(fileName, content, line=1, clearFile=False, mode="w"):
 
     fileContent = fileReader(fileName)
 
-    # if lines is null error out. This should NEVER happen!
+    # if fileContent is null error out. This should NEVER happen as the write mode should create the file!
     if fileContent is None:
         raise ValueError(f"Failed to read {filePath}")
     

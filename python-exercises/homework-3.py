@@ -1,29 +1,23 @@
 #THIS IS THE "MAIN" FILE!
 #Got bugs? Please let me know!
 
-#import function modules from the "lib" folder
+#import function modules from the "lib" or "classes" folder. Make sure they are available and named correctly!
 try:
     import sys
     import os
     sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "lib")))
-
-    import filelib
-
-except ModuleNotFoundError: 
-    #You aren't using my file system, so make sure the module file is in the same place as this program!
-    #To run this program with my file system in mind download it here on my github! https://github.com/jfar5522/python    
-    import filelib
-
-#import class modules from the "classes" folder
-try:
-    import sys
-    import os
     sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "classes")))
 
+    import filelib
     import customer
-
-except ModuleNotFoundError: 
-    import customer
+   
+except ModuleNotFoundError as e:
+    print(f"Could not find module {e}!\n"
+        f"Please ensure the {e} module is named correctly and either:\n"
+        "  - In the same directory as this program, or\n"
+        "  - In the 'lib' or 'classes' folder one level above this program's directory.\n"
+        "To use my file system setup, download it from: https://github.com/jfar5522/python-class-2025")
+    sys.exit(f"Import failure! {e} available!")
 
 #write input file demonstration and eventual execution
 
