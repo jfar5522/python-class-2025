@@ -29,13 +29,13 @@ except ModuleNotFoundError as e:
 # filelib.fileWriter("input.txt","34-1245:1243.21",4)
 # filelib.fileWriter("input.txt","91-7483:13337.73",5)
 
-#medium level way of doing it, easier but not the most efficent or useful way to write
+# medium level way of doing it, easier but not the most efficent or useful way to write
 # filelib.fileWriter("input.txt","Account#:Amount\n42-8798:125988.87\n78-6746:43762.18\n34-1245:1243.21\n91-7483:13337.73",1,1)
 
-#easiest and best way to write using a list, no I have not made it compatiable to write a dictionary out.
+# easiest and best way to write using a list, no I have not made it compatiable to write a dictionary out.
 filelib.fileWriter("input.txt",["Account#:Amount","42-8798:125988.87","78-6746:43762.18","34-1245:1243.21","91-7483:13337.73"])
 
-#assigns lineList a list of each line from the input.txt file
+# assigns lineList a list of each line from the input.txt file
 lineList = filelib.fileReader("input.txt",1)
 
 # goes through the file's line list, splits each line at the ":" and then assigns accountNum to the first half and amount to the 
@@ -43,7 +43,7 @@ lineList = filelib.fileReader("input.txt",1)
 # Who needs dictionaries am I right?
 customerList = []
 for line in lineList:
-    line = str(line)
+    line = str(line)#ignore, only here to tell vscode that the line var is indeed a string and nothing else
     lineSplit = line.split(":")
     accountNum = lineSplit[0]
     amount = lineSplit[1]

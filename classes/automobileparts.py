@@ -1,0 +1,12 @@
+class Tire:
+    def __init__(self):
+        print("Tire Created")
+class SteeringWheel:
+    def __init__(self):
+        print("SteeringWheel created")
+class Engine:
+    def __init__(self):
+        print("Engine created")
+class Door:
+    def __init__(self):
+        print("Door created")

@@ -17,8 +17,9 @@ class Customer:
     def calculateInterestPayment(self, interestPct):
         interestPct *= .01
 
+        #makes sure the amount is a float, if not exit function
         try:
-            #makes sure the amount is a float, if not exit function
+            #test for float, if float do calculation
             self._amount = float(self._amount)
             pctAmount = round((self._amount + (self._amount * interestPct)), 2)
         except ValueError:
