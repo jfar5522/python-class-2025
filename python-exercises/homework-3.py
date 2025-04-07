@@ -12,13 +12,13 @@ try:
     import customer
    
 except ModuleNotFoundError as e:
-    print(f"{e}!\n"
-        f"Please ensure the {e} module is named correctly and either:\n"
+    print(
+        f"{e}! Please ensure the module is named correctly and either:\n"
         "  - In the same directory as this program, or\n"
         "  - In the 'lib' or 'classes' folder one level above this program's directory.\n"
         "To use my file system setup, download it from: https://github.com/jfar5522/python-class-2025")
     sys.exit(f"Import failure! {e} available!")
-
+    
 #write input file demonstration and eventual execution
 
 #manual (harder) way of writing with function as an example of not needing to use lists. (aka why you should use lists because they're great)
