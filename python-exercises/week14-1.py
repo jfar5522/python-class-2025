@@ -17,32 +17,37 @@ except ModuleNotFoundError as e:
 
 print(animal.Animal(5,5,5))
 
-clifford = animal.Dog(174165, 25, 5)
+clifford = animal.Clifford() #animal.Dog(174165, 25, 5) 
+
+
 
 print(clifford)
 
 # check1 = paycheck.Paycheck(5.00)
 # print(check1)
 
-check1 = paycheck.Paycheck(5000.00)
-check2 = paycheck.Paycheck(5.00)
-check3 = paycheck.Paycheck(1000.00)
-check1 + check2
-check1 + check3
-print(check1)
+# check1 = paycheck.Paycheck(5000.00)
+# check2 = paycheck.Paycheck(5.00)
+# check3 = paycheck.Paycheck(1000.00)
+# check1 + check2
+# check1 + check3
+# print(check1)
 
-check1 - check2
-check1 - check3
-check1 - check2
-check1 - check3
-print(check1)
+# check1 - check2
+# check1 - check3
+# check1 - check2
+# check1 - check3
+# print(check1)
 
 
-if(isinstance(clifford, animal.Animal)):
-    print('YES')
+# if(isinstance(clifford, animal.Animal)):
+#     print('YES')
 
-if(isinstance(clifford, animal.Dog)):
-    print('YES')
+# if(isinstance(clifford, animal.Dog)):
+#     print('YES')
 
-if(hasattr(clifford, 'height')):
-    print("yus")
+# if(hasattr(clifford, 'height')):
+#     print("yus")
+
+animal.Dog(5,5,5).eat()
+

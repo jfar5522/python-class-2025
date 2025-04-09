@@ -103,12 +103,14 @@ class Dog(Mammal):
     tamed = True
     domesticated = True
     
-
-
-
 class Bass(Fish):
     pass
 
-
 class Spider(Arachnid):
     pass
+
+
+class Clifford(Dog):
+    def __init__(self, w=174165, h=25, wid=5):
+        super().__init__(h,w,wid) 
+    
