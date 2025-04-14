@@ -25,7 +25,8 @@ class Animal:
     
     def __str__(self):
         return f"{self.__class__.__name__} weighs {self.weight:,}lb has a height of {self.height:,}ft and a width of {self.width:,}ft"
-        
+    def __repr__(self):
+
         
     @property
     def weight(self):
