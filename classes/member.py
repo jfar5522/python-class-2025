@@ -73,6 +73,8 @@ class Member:
         # if the member is a first time member, add the signup fee to the fee variable
         if self._firstTime == "1":
             fee = int(self._signupFee)
+        elif self._firstTime == "0":
+            fee = 0
         elif self._firstTime == "FIRSTTIME":
             return "Total Membership Fees:"
         else:
